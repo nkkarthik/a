@@ -1,0 +1,41 @@
+{
+  "name": "k",
+  "displayName": "k",
+  "description": "k",
+  "version": "0.1.0",
+  "publisher": "k",
+  "repository": {},
+  "engines": {
+    "vscode": "^1.99.3"
+  },
+  "activationEvents": [
+    "onCommand:vscode-shell-executor.activate"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "k.executeSelectedLine",
+        "title": "Exec"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "k.executeSelectedLine",
+        "key": "ctrl+j",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3",
+    "@types/vscode": "^1.99.3",
+    "vsce": "^2.15.0"
+  }
+}
