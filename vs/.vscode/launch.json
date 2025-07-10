@@ -6,7 +6,12 @@
             "type": "extensionHost",
             "request": "launch",
             "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}"
+                "--extensionDevelopmentPath=${workspaceFolder}",
+                "--extensions-dir=${env:USERPROFILE}/.vscode/extensions"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/out/**/*.js",
+                "!**/node_modules/**"
             ]
         }
     ]
