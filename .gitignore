@@ -23,6 +23,55 @@ desktop.ini
 *~                    # General backup suffixes
 
 # ===============================
+# xcode
+# ===============================
+# Xcode
+.DS_Store
+*/build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+a.xcworkspace/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# But keep shared data
+!*.xcworkspace/xcshareddata/
+!*.xcodeproj/xcshareddata/
+
+# Swift Package Manager
+.build/
+Packages/
+Package.pins
+Package.resolved
+*.xcodeproj/f.xcworkspace/xcshareddata/swiftpm/Package.resolved
+
+# CocoaPods
+Pods/
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+
+# Carthage
+Carthage/Build/
+
+# Build artifacts
+build/
+*.dSYM.zip
+*.dSYM
+
+
+# ===============================
 # Build output
 # ===============================
 build/
