@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 
 /*
 
@@ -7,66 +7,103 @@ pwd
 */
 
 export function activate(context: vscode.ExtensionContext) {
-    let disposable = vscode.commands.registerCommand('k.executeSelectedLine', async () => {
-        const editor = vscode.window.activeTextEditor;
-        if (!editor) { return }
+  let disposable = vscode.commands.registerCommand(
+    "k.executeSelectedLine",
+    executeSelectedLine
+  );
+  context.subscriptions.push(disposable);
+  disposable = vscode.commands.registerCommand("k.point", point);
+  context.subscriptions.push(disposable);
+}
 
-        const uri = editor.document.uri
-        const { name, dir } = uriPathSplit(uri)
+async function point() {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+    return;
+  }
+  const doc = editor.document
+  const pos = editor.selection.active
+  const wordRange = doc.getWordRangeAtPosition(pos, /[\w\./\-_~]+/)
+  if (!wordRange) {
+    vscode.window.showErrorMessage('nothing found at point')
+  }
+  const word = doc.getText(wordRange)
+  const fileUri = vscode.Uri.file(word)
 
-        // let term = vscode.window.activeTerminal
-        // if (!term) {
-        //     term = vscode.window.createTerminal('k')
-        // }
-        let term = findTerminalByName(name)
-        if (!term) {
-            term = vscode.window.createTerminal({
-                name: name,
-                cwd: dir,
-            })
-        }
+  // ensure split two
+  const tabGroups = vscode.window.tabGroups
+  let targetColumn = vscode.ViewColumn.Two
+  if (tabGroups.all.length === 1) {
+    await vscode.commands.executeCommand('workbench.action.splitEditor')
+    targetColumn = vscode.ViewColumn.Two
+  }
 
-        const pos = editor.selection.active
-        const selection = editor.document.getText(editor.selection);
-        let text = selection
-        if (!text) {
-            text = editor.document.lineAt(pos.line).text
-        }
-        
-        term.show(true) // preserveFocus = true
-        // vscode.commands.executeCommand('workbench.action.terminal.scrollToBottom')
-        term.sendText(text, true)
+  // open in split two
+  await vscode.window.showTextDocument(fileUri, {
+    viewColumn: targetColumn,
+    preserveFocus: false,
+  })
+}
 
-        // Small delay to ensure terminal processes the input
-        // await new Promise(resolve => setTimeout(resolve, 100));
+async function executeSelectedLine() {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+    return;
+  }
 
-        // Focus back to editor
-        // await vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup');
+  const uri = editor.document.uri;
+  const { name, dir } = uriPathSplit(uri);
 
-        // Move cursor to the next line
-        const nextLine = Math.min(pos.line + 1, editor.document.lineCount - 1);
-        const newPosition = new vscode.Position(nextLine, 0);
-        editor.selection = new vscode.Selection(newPosition, newPosition);
-        editor.revealRange(new vscode.Range(newPosition, newPosition));
+  // let term = vscode.window.activeTerminal
+  // if (!term) {
+  //     term = vscode.window.createTerminal('k')
+  // }
+  let term = findTerminalByName(name);
+  if (!term) {
+    term = vscode.window.createTerminal({
+      name: name,
+      cwd: dir,
     });
+  }
 
-    context.subscriptions.push(disposable);
+  const pos = editor.selection.active;
+  const selection = editor.document.getText(editor.selection);
+  let text = selection;
+  if (!text) {
+    text = editor.document.lineAt(pos.line).text;
+  }
+
+  term.show(true); // preserveFocus = true
+  // vscode.commands.executeCommand('workbench.action.terminal.scrollToBottom')
+  term.sendText(text, true);
+
+  // Small delay to ensure terminal processes the input
+  // await new Promise(resolve => setTimeout(resolve, 100));
+
+  // Focus back to editor
+  // await vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup');
+
+  // Move cursor to the next line
+  const nextLine = Math.min(pos.line + 1, editor.document.lineCount - 1);
+  const newPosition = new vscode.Position(nextLine, 0);
+  editor.selection = new vscode.Selection(newPosition, newPosition);
+  editor.revealRange(new vscode.Range(newPosition, newPosition));
 }
 
 export function deactivate() {}
 
 function uriPathSplit(uri: vscode.Uri) {
-    const segs = uri.path.split('/')
-    const name = segs.pop() // remove filename
-    const dir = segs.join('/')
-    return {name, dir}
+  const segs = uri.path.split("/");
+  const name = segs.pop(); // remove filename
+  const dir = segs.join("/");
+  return { name, dir };
 }
 
 function findTerminalByName(name?: string) {
-    const terms = vscode.window.terminals
-    for (let term of terms) {
-        if (term.name == name) {
-            return term
-        }
+  const terms = vscode.window.terminals;
+  for (let term of terms) {
+    if (term.name == name) {
+      return term;
     }
+  }
 }

@@ -2,7 +2,7 @@
   "name": "k",
   "displayName": "k",
   "description": "k",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publisher": "k",
   "repository": {},
   "engines": {
@@ -16,7 +16,11 @@
     "commands": [
       {
         "command": "k.executeSelectedLine",
-        "title": "Exec"
+        "title": "KExec"
+      }
+      ,{
+        "command": "k.point",
+        "title": "KPoint"
       }
     ],
     "keybindings": [
@@ -24,6 +28,11 @@
         "command": "k.executeSelectedLine",
         "key": "ctrl+j",
         "when": "editorTextFocus"
+      }
+      ,{
+        "command": "k.point",
+        "key": "g f",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
       }
     ]
   },
