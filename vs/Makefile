@@ -3,7 +3,3 @@
 package: 
 	npm run package
 
-.PHONY: i
-i: 
-	yarn
-

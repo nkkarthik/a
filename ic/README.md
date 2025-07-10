@@ -3,3 +3,4 @@
 k
 <!-- Plugin description end -->
 
+echo hello
