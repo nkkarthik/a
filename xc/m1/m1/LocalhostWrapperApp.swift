@@ -126,21 +126,20 @@ class CustomWKWebView: WKWebView {
             if let keys = event.charactersIgnoringModifiers, keys.count == 1 {
                 if let urlString = urlMappings[keys] {
                     load(URLRequest(url: URL(string: urlString)!))
+                    window?.title = keys
                     return
                 }
+                // self.evaluateJavaScript("document.body.style.zoom = 1")
                 switch keys {
                 case "=":
-                    pageZoom  = pageZoom * 1.1
                     // zoom in
-                    //                    self.evaluateJavaScript("document.body.style.zoom = (parseFloat(document.body.style.zoom) || 1) * 1.1")
+                    pageZoom  = pageZoom * 1.1
                 case "-":
                     pageZoom = pageZoom * 0.9
                     // zoom out
-                    //                    self.evaluateJavaScript("document.body.style.zoom = (parseFloat(document.body.style.zoom) || 1) / 1.1")
                 case "0":
-                    pageZoom = 1.0
                     // reset zoom
-                    //                    self.evaluateJavaScript("document.body.style.zoom = 1")
+                    pageZoom = 1.0
                 default:
                     break
                 }
