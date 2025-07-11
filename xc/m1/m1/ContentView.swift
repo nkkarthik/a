@@ -18,8 +18,12 @@ struct ContentView: View {
                 urlMappings: [
                     "1": "http://localhost:30001/?folder=/Users/knannuru/m",
                     "2": "https://k/?folder=/home/knannuru/k",
-                    "3":
-                        "https://k/?workspace=/home/knannuru/k/.vscode/cisd.code-workspace",
+                    "3": "http://localhost:30001/?workspace=/Users/knannuru/m/.vscode/cisd.code-workspace",
+                    "4": "https://k/?workspace=/home/knannuru/k/.vscode/cisd.code-workspace",
+                    "5": "http://localhost:30001/?workspace=/Users/knannuru/m/.vscode/gh.code-workspace",
+                    "6": "https://k/?workspace=/home/knannuru/k/.vscode/gh.code-workspace",
+                    "7": "http://localhost:30001/?workspace=/Users/knannuru/m/.vscode/l.code-workspace",
+                    "8": "https://k/?workspace=/home/knannuru/k/.vscode/l.code-workspace",
                     "9": "https://chatgpt.com",
                 ]
             )
