@@ -21,14 +21,19 @@ async function point() {
   if (!editor) {
     return;
   }
+  const { name, dir } = uriPathSplit(editor.document.uri);
   const doc = editor.document
   const pos = editor.selection.active
-  const wordRange = doc.getWordRangeAtPosition(pos, /[\w\./\-_~]+/)
+  const wordRange = doc.getWordRangeAtPosition(pos, /[\w\./\-_~$]+/)
   if (!wordRange) {
     vscode.window.showErrorMessage('nothing found at point')
   }
-  const word = doc.getText(wordRange)
-  const fileUri = vscode.Uri.file(word)
+  let word = doc.getText(wordRange).trim()
+  let homePath = "/home/knannuru"
+  if (dir.includes("/Users")) homePath = "/Users/knannuru"
+  // expand homedir
+  word = word.replace(/^~(?=\/|$)/, homePath).replace(/\$HOME\b/, homePath)
+  const target = word.startsWith('/') ? vscode.Uri.file(word) : vscode.Uri.joinPath(vscode.Uri.file(dir), word)
 
   // ensure split two
   const tabGroups = vscode.window.tabGroups
@@ -39,7 +44,7 @@ async function point() {
   }
 
   // open in split two
-  await vscode.window.showTextDocument(fileUri, {
+  await vscode.window.showTextDocument(target, {
     viewColumn: targetColumn,
     preserveFocus: false,
   })
@@ -51,8 +56,7 @@ async function executeSelectedLine() {
     return;
   }
 
-  const uri = editor.document.uri;
-  const { name, dir } = uriPathSplit(uri);
+  const { name, dir } = uriPathSplit(editor.document.uri);
 
   // let term = vscode.window.activeTerminal
   // if (!term) {
