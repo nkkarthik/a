@@ -28,6 +28,6 @@ struct m1App: App {
             ContentView()
         }
         .modelContainer(sharedModelContainer)
-        .windowStyle(.hiddenTitleBar)
+//        .windowStyle(.hiddenTitleBar)
     }
 }
