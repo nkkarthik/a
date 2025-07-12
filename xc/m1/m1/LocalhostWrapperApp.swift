@@ -8,6 +8,13 @@
 import SwiftUI
 import WebKit
 
+#if DEBUG
+let isDebug = true
+#else
+let isDebug = false
+#endif
+
+
 struct LocalhostWebView: NSViewRepresentable {
     let url: String
     let urlMappings: [String: String]

@@ -22,7 +22,17 @@ struct m1App: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
-
+    
+    init() {
+        print("debugging")
+        #if DEBUG
+        if let icon = NSImage(named: "AppIconD") {
+            print("setting debug icon")
+            NSApplication.shared.applicationIconImage = icon
+        }
+        #endif
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
