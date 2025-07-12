@@ -19,6 +19,9 @@ struct LocalhostWebView: NSViewRepresentable {
         configuration.preferences.javaScriptEnabled = true
         // Allow file access from file URLs (for local development)
         configuration.preferences.setValue(true, forKey: "allowFileAccessFromFileURLs")
+        configuration.preferences.setValue(true, forKey: "javaScriptCanAccessClipboard")
+        configuration.preferences.setValue(true, forKey: "DOMPasteAllowed")
+                
         
         // Create webview
         let webview = CustomWKWebView(frame: .zero, configuration: configuration)
@@ -79,6 +82,7 @@ struct LocalhostWebView: NSViewRepresentable {
             completionHandler(.useCredential, credential)
         }
         
+        // navigation clicks
         func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
             print("can go? \(navigationAction)")
             guard navigationAction.targetFrame == nil,
