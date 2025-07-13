@@ -58,14 +58,12 @@ async function executeSelectedLine() {
 
   const { name, dir } = uriPathSplit(editor.document.uri);
 
-  // let term = vscode.window.activeTerminal
-  // if (!term) {
-  //     term = vscode.window.createTerminal('k')
-  // }
-  let term = findTerminalByName(name);
+  // remove file extension
+  let termName = name?.split('.').slice(0, -1).join('.')
+  let term = findTerminalByName(termName);
   if (!term) {
     term = vscode.window.createTerminal({
-      name: name,
+      name: termName,
       cwd: dir,
     });
   }

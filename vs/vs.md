@@ -1,24 +1,11 @@
 # vs
 
-pwd
+    npm i
 
-`gf`
-echo hello > /tmp/foo
-cat /tmp/foo
+    npm test -- --watch
 
-echo hello > foo
-cat foo
+    rm *.vsix 
+    make
+    openvscode-server --install-extension k-*.vsix
+    cp k*.vsix ~/k/c/vs
 
-## package
-npm i
-make
-cp k*.vsix ~/k/c/vs
-
-pwd
-cd vs
-ls 
-~/k/c/vs
-
-type openvscode-server
-openvscode-server --help
-openvscode-server --install-extension k-0.4.0.vsix

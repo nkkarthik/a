@@ -2,7 +2,7 @@
   "name": "k",
   "displayName": "k",
   "description": "k",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "publisher": "k",
   "repository": {},
   "engines": {
@@ -17,8 +17,8 @@
       {
         "command": "k.executeSelectedLine",
         "title": "KExec"
-      }
-      ,{
+      },
+      {
         "command": "k.point",
         "title": "KPoint"
       }
@@ -28,8 +28,8 @@
         "command": "k.executeSelectedLine",
         "key": "ctrl+j",
         "when": "editorTextFocus"
-      }
-      ,{
+      },
+      {
         "command": "k.point",
         "key": "g f",
         "when": "editorTextFocus && vim.mode == 'Normal'"
@@ -40,11 +40,13 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "package": "vsce package"
+    "package": "vsce package",
+    "test": "jest"
   },
   "devDependencies": {
-    "typescript": "5.8.3",
     "@types/vscode": "^1.99.3",
+    "jest": "^30.0.4",
+    "typescript": "5.8.3",
     "vsce": "^2.15.0"
   }
 }
