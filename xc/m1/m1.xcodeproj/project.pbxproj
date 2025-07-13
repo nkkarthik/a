@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		31E405BE2E23269F00F3B15B /* M1Library in Frameworks */ = {isa = PBXBuildFile; productRef = 31E405BD2E23269F00F3B15B /* M1Library */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		31E405A92E21105900F3B15B /* m1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = m1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31E405BE2E23269F00F3B15B /* M1Library in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +38,7 @@
 			isa = PBXGroup;
 			children = (
 				31E405AB2E21105900F3B15B /* m1 */,
+				31E405BC2E23269F00F3B15B /* Frameworks */,
 				31E405AA2E21105900F3B15B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +49,13 @@
 				31E405A92E21105900F3B15B /* m1.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		31E405BC2E23269F00F3B15B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,6 +78,7 @@
 			);
 			name = m1;
 			packageProductDependencies = (
+				31E405BD2E23269F00F3B15B /* M1Library */,
 			);
 			productName = m1;
 			productReference = 31E405A92E21105900F3B15B /* m1.app */;
@@ -323,6 +337,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		31E405BD2E23269F00F3B15B /* M1Library */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = M1Library;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 31E405A12E21105900F3B15B /* Project object */;
 }
