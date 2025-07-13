@@ -1,10 +1,5 @@
 import * as vscode from "vscode";
-
-/*
-
-pwd
-
-*/
+import { lineAt } from "./sh";
 
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
@@ -72,7 +67,8 @@ async function executeSelectedLine() {
   const selection = editor.document.getText(editor.selection);
   let text = selection;
   if (!text) {
-    text = editor.document.lineAt(pos.line).text;
+    text = lineAt(editor.document.getText(), pos.character) 
+    if (text === '') text = editor.document.lineAt(pos.line).text;
   }
 
   term.show(true); // preserveFocus = true
@@ -109,3 +105,4 @@ function findTerminalByName(name?: string) {
     }
   }
 }
+
