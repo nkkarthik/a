@@ -67,7 +67,7 @@ async function executeSelectedLine() {
   const selection = editor.document.getText(editor.selection);
   let text = selection;
   if (!text) {
-    text = lineAt(editor.document.getText(), pos.character) 
+    text = lineAt(editor.document.getText(), editor.document.offsetAt(pos)) 
     if (text === '') text = editor.document.lineAt(pos.line).text;
   }
 
