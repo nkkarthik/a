@@ -1,3 +1,14 @@
+
+# user 
+ARG USERNAME=knannuru
+ARG USER_UID=1001
+ARG USER_GID=1001
+
+RUN groupmod --gid $USER_GID $USERNAME \
+    && usermod --uid $USER_UID --gid $USER_GID $USERNAME \
+    && chown -R $USER_UID:$USER_GID /home/$USERNAME \
+    && chown -R $USER_UID:$USER_GID /home/.openvscode-server
+
 # find docker group and add container user to that group
 SOCK=/var/run/docker.sock
 if [ -S "$SOCK" ]; then
@@ -12,7 +23,6 @@ PATH=$HOME/bin:$PATH
 PATH=$HOME/go/bin:$PATH
 
 alias v=nvim
-
 # start
 export SHELL=fish
 exec gosu knannuru /home/.openvscode-server/bin/openvscode-server --port 30001 --connection-secret=/home/knannuru/.openvscode-server-token
