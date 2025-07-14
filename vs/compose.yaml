@@ -7,7 +7,8 @@ services:
       USER: knannuru
       HOME: /home/knannuru
     volumes:
-      - /home/knannuru:/home/knannuru
+      - /home/knannuru/a:/home/knannuru/a
+      - /home/knannuru/nv:/home/knannuru/nv
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     tty: true
