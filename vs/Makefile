@@ -12,7 +12,7 @@ test:
 ps:
 	docker compose ps
 restart:
- 	docker compose restart
+	docker compose restart
 # is this right? or rm or stop?
 kill:
 	docker compose kill 
