@@ -17,25 +17,16 @@ secrets/**           filter=git-crypt diff=git-crypt
 config/secret-*.json filter=git-crypt diff=git-crypt
 **/secrets.yaml      filter=git-crypt diff=git-crypt
 **/secrets.yml       filter=git-crypt diff=git-crypt
+**/Info.plist        filter=git-crypt diff=git-crypt
 
 # 🔐 Vaults and credentials
 vault/**             filter=git-crypt diff=git-crypt
 **/credentials       filter=git-crypt diff=git-crypt
 
-# 🧪 Examples or fake secrets (excluded from encryption)
-examples/**          filter= diff=
-*.example.env        filter= diff=
-*.sample.yaml        filter= diff=
-
-# ✅ Explicitly unfiltered public config
-public.env           filter= diff=
-docs/**/*.md         filter= diff=
-
 # 🔒 Default deny-by-convention directories (e.g. anything in "private/")
 private/**           filter=git-crypt diff=git-crypt
 
 # 🛠️ Optional: disable diff for binary secrets
-*.p12                diff=git-crypt
 *.bin                filter=git-crypt diff=git-crypt
 
 # a
