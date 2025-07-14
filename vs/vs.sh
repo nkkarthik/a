@@ -1,10 +1,10 @@
 
 # user 
-ARG USERNAME=knannuru
-ARG USER_UID=1001
-ARG USER_GID=1001
+USERNAME=knannuru
+USER_UID=1001
+USER_GID=1001
 
-RUN groupmod --gid $USER_GID $USERNAME \
+groupmod --gid $USER_GID $USERNAME \
     && usermod --uid $USER_UID --gid $USER_GID $USERNAME \
     && chown -R $USER_UID:$USER_GID /home/$USERNAME \
     && chown -R $USER_UID:$USER_GID /home/.openvscode-server
