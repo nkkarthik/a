@@ -1,8 +1,8 @@
 # vs 
 OS := $(shell uname)
 mkfile_dir := $(CURDIR)
-.PHONY: b i ps restart kill
-i:
+.PHONY: b up ps restart kill
+up:
 	docker compose up --build -d
 b:
 	docker compose build
