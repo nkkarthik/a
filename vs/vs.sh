@@ -25,4 +25,4 @@ PATH=$HOME/go/bin:$PATH
 alias v=nvim
 # start
 export SHELL=fish
-exec gosu knannuru /home/.openvscode-server/bin/openvscode-server --port 30001 --connection-secret=/home/knannuru/.openvscode-server-token
+exec gosu knannuru /home/.openvscode-server/bin/openvscode-server --port 30001 --connection-secret=/k/.openvscode-server-token
