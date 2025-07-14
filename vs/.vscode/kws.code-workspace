@@ -1,0 +1,24 @@
+{
+    "folders": [
+        {
+            "name": "a",
+            "path": "/home/knannuru/a"
+        }
+        ,{
+            "name": "cisd",
+            "path": "/usr/local/cisd"
+        }
+    ],
+    "settings": {
+        "files.exclude": {
+            "**/node_modules": true,
+            "**/__pycache__": true,
+            "**/.git": true,
+            "**/.svn": true,
+            "**/.hg": true,
+            "**/.DS_Store": true,
+            "**/Thumbs.db": true,
+            "**/*.crswap": true
+        }
+    }
+}
