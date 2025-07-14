@@ -5,6 +5,10 @@
             "path": "/home/knannuru/a"
         }
         ,{
+            "name": "nvpark",
+            "path": "/home/knannuru/nv/cisd/nvpark"
+        }
+        ,{
             "name": "cisd",
             "path": "/usr/local/cisd"
         }
