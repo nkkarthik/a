@@ -12,10 +12,14 @@ import M1Library
 
 public struct LocalhostWebView: NSViewRepresentable {
     let url: String
+    let onKeys: (String) -> Void
     let urlMappings: [String: String]
     
-    public init(url: String, urlMappings: [String : String]) {
+    private var showing = ""
+
+    public init(url: String, onKeys: @escaping (String)->Void, urlMappings: [String : String]) {
         self.url = url
+        self.onKeys = onKeys
         self.urlMappings = urlMappings
     }
     
@@ -34,16 +38,21 @@ public struct LocalhostWebView: NSViewRepresentable {
         let webview = CustomWKWebView(frame: .zero, configuration: configuration)
         webview.navigationDelegate = context.coordinator
         webview.uiDelegate = context.coordinator
-        webview.setURLMappings(urlMappings)
+        webview.urlMappings = urlMappings
+        webview.onKeys = onKeys
         
+        if let url = URL(string: self.url) {
+            let request = URLRequest(url: url)
+            webview.load(request)
+        }
         return webview
     }
     
     public func updateNSView(_ webView: WKWebView, context: Context) {
         // load initial
-        guard let url = URL(string: self.url) else { return }
-        let request = URLRequest(url: url)
-        webView.load(request)
+//        guard let url = URL(string: self.url) else { return }
+//        let request = URLRequest(url: url)
+//        webView.load(request)
     }
     
     public func makeCoordinator() -> Coordinator {
@@ -55,7 +64,7 @@ public struct LocalhostWebView: NSViewRepresentable {
 
 public class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
     let parent: LocalhostWebView
-    
+
     init(_ parent: LocalhostWebView) {
         self.parent = parent
     }
@@ -128,7 +137,10 @@ public class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
 }
 
 class CustomWKWebView: WKWebView {
-    private var urlMappings: [String: String] = [:]
+    var urlMappings: [String: String] = [:]
+    var onKeys: (String) -> Void = ({_ in })
+    
+    private var current: String?
     
     public override var acceptsFirstResponder: Bool { return true }
     
@@ -138,8 +150,11 @@ class CustomWKWebView: WKWebView {
         if event.modifierFlags.contains(.command) {
             if let keys = event.charactersIgnoringModifiers, keys.count == 1 {
                 if let urlString = urlMappings[keys] {
-                    load(URLRequest(url: URL(string: urlString)!))
-                    window?.title = keys
+                    if current != urlString {
+                        current = urlString
+                        load(URLRequest(url: URL(string: urlString)!))
+                        window?.title = keys
+                    }
                     return
                 }
                 // self.evaluateJavaScript("document.body.style.zoom = 1")
@@ -154,6 +169,7 @@ class CustomWKWebView: WKWebView {
                     // reset zoom
                     pageZoom = 1.0
                 default:
+                    onKeys(keys)
                     break
                 }
             }
@@ -165,9 +181,6 @@ class CustomWKWebView: WKWebView {
         urlMappings[key] = urlString
     }
     
-    func setURLMappings(_ mappings: [String: String]) {
-        urlMappings = mappings
-    }
 }
 
 
