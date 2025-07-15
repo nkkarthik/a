@@ -7,6 +7,8 @@ export function activate(context: vscode.ExtensionContext) {
     executeSelectedLine
   );
   context.subscriptions.push(disposable);
+  disposable = vscode.commands.registerCommand("k.rerun", rerun);
+  context.subscriptions.push(disposable);
   disposable = vscode.commands.registerCommand("k.point", point);
   context.subscriptions.push(disposable);
 }
@@ -45,6 +47,8 @@ async function point() {
   })
 }
 
+let previous = {term: "", dir: "", command: ""}
+
 async function executeSelectedLine() {
   const editor = vscode.window.activeTextEditor;
   if (!editor) {
@@ -74,6 +78,7 @@ async function executeSelectedLine() {
   term.show(true); // preserveFocus = true
   // vscode.commands.executeCommand('workbench.action.terminal.scrollToBottom')
   term.sendText(text, true);
+  previous = {term: termName!, dir: dir, command: text}
 
   // Small delay to ensure terminal processes the input
   // await new Promise(resolve => setTimeout(resolve, 100));
@@ -86,6 +91,19 @@ async function executeSelectedLine() {
   const newPosition = new vscode.Position(nextLine, 0);
   editor.selection = new vscode.Selection(newPosition, newPosition);
   editor.revealRange(new vscode.Range(newPosition, newPosition));
+}
+
+async function rerun() {
+  if (previous.term === "") return
+  let term = findTerminalByName(previous.term);
+  if (!term) {
+    term = vscode.window.createTerminal({
+      name: previous.term,
+      cwd: previous.dir,
+    });
+  }
+  term.show(true); // preserveFocus = true
+  term.sendText(previous.command, true);
 }
 
 export function deactivate() {}

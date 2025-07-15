@@ -4,8 +4,12 @@
 
     npm test -- --watch
 
+    ls -l
     rm *.vsix 
-    make
+    npm run package
     openvscode-server --install-extension k-*.vsix
+
+    cp k*.vsix ~/k/t/
+
     cp k*.vsix ~/k/c/vs
 
