@@ -22,6 +22,21 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geometry in
             HStack(spacing: 0) {
+                
+                LocalhostWebView(
+                    url: url9,
+                    onKeys: { keys in
+                        switch keys {
+                        case "9":
+                            showHelp.toggle()
+                        default:
+                            break
+                        }
+                    },
+                    urlMappings: [:],
+                )
+                .frame(width: geometry.size.width * (showHelp ? 0.30 : 0))
+                
                 LocalhostWebView(
                     url: url,
                     onKeys: { keys in
@@ -41,21 +56,8 @@ struct ContentView: View {
                         "3": url3,
                     ]
                 )
-                .frame(width: geometry.size.width * (showHelp ? 0.618 : 1))
-                LocalhostWebView(
-                    url: url9,
-                    onKeys: { keys in
-                        switch keys {
-                        case "9":
-                            showHelp.toggle()
-                        default:
-                            break
-                        }
-                    },
-                    urlMappings: [:],
-                )
-                .frame(width: geometry.size.width * (showHelp ? 0.382 : 0))
-                .opacity(showHelp ? 1 : 0)
+                .frame(width: geometry.size.width * (showHelp ? 0.70 : 1))
+
             }
         }
     }
