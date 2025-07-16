@@ -74,6 +74,7 @@ async function executeSelectedLine() {
     text = lineAt(editor.document.getText(), editor.document.offsetAt(pos)) 
     if (text === '') text = editor.document.lineAt(pos.line).text;
   }
+  text = text.trim()
 
   term.show(true); // preserveFocus = true
   // vscode.commands.executeCommand('workbench.action.terminal.scrollToBottom')
