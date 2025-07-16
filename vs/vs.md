@@ -7,11 +7,11 @@
     ls -l
     git status
     git pull --rebase
+
     rm *.vsix 
     npm run package
     openvscode-server --install-extension k-*.vsix
 
-    cp k*.vsix ~/k/t/
-
+    rm ~/k/c/vs/k*.vsix 
     cp k*.vsix ~/k/c/vs
-
+    ls ~/k/c/vs
