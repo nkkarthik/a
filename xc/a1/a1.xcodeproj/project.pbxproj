@@ -10,22 +10,9 @@
 		31E405572E202F4000F3B15B /* a1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = a1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		31E405642E202F4100F3B15B /* Exceptions for "a1" folder in "a1" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 31E405562E202F4000F3B15B /* a1 */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		31E405592E202F4000F3B15B /* a1 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				31E405642E202F4100F3B15B /* Exceptions for "a1" folder in "a1" target */,
-			);
 			path = a1;
 			sourceTree = "<group>";
 		};

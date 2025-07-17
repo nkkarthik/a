@@ -29,22 +29,9 @@
 		31EA08E02E265B8C00400D18 /* i1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = i1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		31EA08E82E265B8C00400D18 /* Exceptions for "i1" folder in "i1" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 31EA08C42E265B8B00400D18 /* i1 */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		31EA08C72E265B8B00400D18 /* i1 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				31EA08E82E265B8C00400D18 /* Exceptions for "i1" folder in "i1" target */,
-			);
 			path = i1;
 			sourceTree = "<group>";
 		};
