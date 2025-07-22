@@ -10,22 +10,9 @@
 		311CB2F82E20AEF500F36965 /* mk1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mk1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		311CB30B2E20E14800F36965 /* Exceptions for "mk1" folder in "mk1" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 311CB2F72E20AEF500F36965 /* mk1 */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		311CB2FA2E20AEF500F36965 /* mk1 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				311CB30B2E20E14800F36965 /* Exceptions for "mk1" folder in "mk1" target */,
-			);
 			path = mk1;
 			sourceTree = "<group>";
 		};
