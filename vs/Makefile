@@ -1,7 +1,11 @@
 # vs 
 OS := $(shell uname)
 mkfile_dir := $(CURDIR)
-.PHONY: b up ps restart kill
+.PHONY: x b up ps restart kill
+x:
+	@rm *.vsix || true
+	npm run package
+	openvscode-server --install-extension k-*.vsix
 up:
 	docker compose up --build -d
 b:
@@ -22,3 +26,6 @@ kill:
 # 	mkdir -p "$$HOME/.config"
 # 	rm -rf "$$HOME/.config/fish"
 # 	ln -sfnv "$(CURDIR)/vs/config/fish" "$$HOME/.config/fish"
+# vs
+
+

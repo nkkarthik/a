@@ -25,4 +25,8 @@ PATH=$HOME/go/bin:$PATH
 alias v=nvim
 # start
 export SHELL=fish
-exec gosu knannuru /home/.openvscode-server/bin/openvscode-server --port 30001 --connection-secret=/k/.openvscode-server-token
+if [[ -v EMACS ]]; then
+    exec gosu knannuru gotty --port 10003 -w emacs 
+else
+    exec gosu knannuru /home/.openvscode-server/bin/openvscode-server --port 30001 --connection-secret=/k/.openvscode-server-token
+fi
