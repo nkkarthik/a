@@ -216,24 +216,11 @@ RUN ls -ld /home/knannuru/.cache && \
 USER root
 
 
-
-# ---- Fonts ----
-RUN apt install -y unzip
-# ---- JetBrains Mono ----
-ENV FONT_DIR=/usr/share/fonts/truetype/jetbrains-mono
-RUN mkdir -p $FONT_DIR && \
-    curl -fsSL \
-      https://github.com/JetBrains/JetBrainsMono/releases/latest/download/JetBrainsMono-2.304.zip \
-      -o /tmp/jetbrains-mono.zip && \
-    unzip -qq /tmp/jetbrains-mono.zip -d /tmp/jbm && \
-    mv /tmp/jbm/fonts/ttf/*.ttf $FONT_DIR/ && \
-    rm -rf /tmp/jetbrains-mono.zip /tmp/jbm && \
-    fc-cache -f
-
-# emacs vterm
+# libtool for emacs vterm
 RUN apt install -y libtool libtool-bin
-RUN apt install -y fonts-firacode
 
+RUN apt install -y sqlite3 libsqlite3-dev
+RUN apt install -y fonts-firacode
         
 COPY . /emacs
 RUN chmod +x /emacs/emacs.sh
