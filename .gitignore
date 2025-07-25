@@ -1,12 +1,15 @@
 # ===============================
 # OS-specific files
 # ===============================
+*~
+\#*\#
+.\#*
+*.fasl
 .DS_Store
 Thumbs.db
 ehthumbs.db
 Icon?
 ._*
-*~
 .Spotlight-V100
 .Trashes
 desktop.ini

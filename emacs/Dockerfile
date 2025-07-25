@@ -214,6 +214,15 @@ RUN ls -ld /home/knannuru/.cache && \
 USER root
 
 
+#RUN curl -O https://beta.quicklisp.org/quicklisp.lisp && \
+#    sbcl --disable-debugger --load quicklisp.lisp \
+#    	 --eval '(quicklisp-quickstart:install)' \
+#	 --eval '(ql-util:without-prompting (ql:add-to-init-file))' \
+#	 --quit
+
+RUN apt install -y lsof
+
+COPY sbclrc /home/knannuru/.sbclrc
        
 COPY . /emacs
 RUN chmod +x /emacs/emacs.sh

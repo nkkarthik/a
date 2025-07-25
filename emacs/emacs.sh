@@ -8,6 +8,7 @@ if [ -S "$SOCK" ]; then
     usermod -aG dockerhost knannuru
 fi
 
+chown -R knannuru:knannuru /home/knannuru/quicklisp
 
 export DISPLAY=:100
 export QT_X11_NO_MITSHM=1

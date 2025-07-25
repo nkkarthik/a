@@ -87,20 +87,7 @@
 ;;   :bind ("<f5>" . my/toggle-modus-theme))
 
 
-;; k funs
-
-(defun k/action ()
-  "Run the current line in an asynchronous shell (`async-shell-command`)."
-  (interactive)
-  (let* ((line (thing-at-point 'line t))
-         ;; remove trailing newline so shells don’t see an empty command
-         (cmd  (string-trim-right line)))
-    (if (string-empty-p cmd)
-        (message "Current line is empty")
-      (async-shell-command cmd "*Async Line*"))))
-
-(with-eval-after-load 'evil
-  (define-key evil-normal-state-map (kbd "C-j") #'k/action))
+(require 'k) ;; assumes lisp/k.el with (provide 'k) at the end
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -108,7 +95,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("77f281064ea1c8b14938866e21c4e51e4168e05db98863bd7430f1352cab294a"
+   '("5e39e95c703e17a743fb05a132d727aa1d69d9d2c9cde9353f5350e545c793d4"
+     "77f281064ea1c8b14938866e21c4e51e4168e05db98863bd7430f1352cab294a"
      default)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
