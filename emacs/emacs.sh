@@ -26,6 +26,11 @@ cd $HOME
 #    exec gosu knannuru gotty --port 1111 -w emacs 
 exec gosu knannuru xpra start :100 \
     --sharing=yes \
+    --desktop-scaling=2 \
+    --dpi=218 \
+    --video-encoders=none \
+    --encodings=jpeg,rgb \
+    --min-quality=90  --min-speed=30 \
     --start-child="emacs --load /emacs/emacs.el" \
     --bind-tcp=0.0.0.0:1111 \
     --html=on \
@@ -34,7 +39,6 @@ exec gosu knannuru xpra start :100 \
     --swap-keys=no \
     --daemon=no \
     --exit-with-children \
-    --dpi=218 \
     --no-pulseaudio \
     --no-mdns \
     --no-notifications \

@@ -152,19 +152,6 @@ RUN make -j$(nproc) bootstrap && \
 
 
 
-# fish shell
-RUN apt install -y sudo fish direnv
-RUN echo /usr/bin/fish >> /etc/shells
-
-# golang
-RUN apt install -y golang-go
-RUN go install github.com/sorenisanerd/gotty@latest
-
-
-
-# docker client
-RUN apt install -y apt-transport-https software-properties-common
-
 
 # Add Docker's
 RUN install -m 0755 -d /etc/apt/keyrings && \
@@ -177,9 +164,21 @@ RUN echo \
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
     tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-# Update package list with Docker repository
-RUN apt update && apt install -y docker-ce-cli docker-compose-plugin docker-buildx-plugin
 
+RUN apt update && apt install -y \
+    sudo fish direnv \
+    docker-ce-cli docker-compose-plugin docker-buildx-plugin \
+    golang-go \
+    apt-transport-https software-properties-common \
+    cmake \
+    libtool libtool-bin \
+    sqlite3 libsqlite3-dev \
+    fonts-firacode
+
+# fish shell
+RUN echo /usr/bin/fish >> /etc/shells
+
+RUN go install github.com/sorenisanerd/gotty@latest
 
 
 
@@ -201,7 +200,6 @@ RUN groupmod -n knannuru ubuntu && \
 # PRE-INSTALL STRAIGHT.EL AND PACKAGES DURING BUILD
 #    --eval "(setq user-emacs-directory \"/home/knannuru/.emacs.d/\")" \
 
-RUN apt install -y cmake
 COPY lisp/deps.el /home/knannuru/.emacs.d/lisp/deps.el
 RUN mkdir -p /home/knannuru/.cache/emacs/eln && \
     mkdir -p /home/knannuru/.cache/straight && \
@@ -216,12 +214,7 @@ RUN ls -ld /home/knannuru/.cache && \
 USER root
 
 
-# libtool for emacs vterm
-RUN apt install -y libtool libtool-bin
-
-RUN apt install -y sqlite3 libsqlite3-dev
-RUN apt install -y fonts-firacode
-        
+       
 COPY . /emacs
 RUN chmod +x /emacs/emacs.sh
 CMD ["/emacs/emacs.sh"]
